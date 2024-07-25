@@ -347,6 +347,31 @@ namespace StarterAssets
                 _verticalVelocity += Gravity * Time.deltaTime;
             }
         }
+        public void JumpBed(float newJumpHeight)
+        {
+            // reset the fall timeout timer
+            _fallTimeoutDelta = FallTimeout;
+
+            // update animator if using character
+            if (_hasAnimator)
+            {
+                _animator.SetBool(_animIDJump, false);
+                _animator.SetBool(_animIDFreeFall, false);
+            }
+
+            // Jump
+            {
+                // the square root of H * -2 * G = how much velocity needed to reach desired height
+                _verticalVelocity = Mathf.Sqrt(newJumpHeight * -2f * Gravity);
+
+                // update animator if using character
+                if (_hasAnimator)
+                {
+                    _animator.SetBool(_animIDJump, true);
+                }
+            }
+
+        }
 
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
         {
