@@ -1,3 +1,4 @@
+using DiasGames.Controller;
 using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,9 +9,9 @@ public class JumpTrigger : MonoBehaviour
     [SerializeField] float newJumpHeight = 10;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<ThirdPersonController>())
+        if (other.CompareTag("Player"))
         {
-            other.GetComponent<ThirdPersonController>().JumpBed(newJumpHeight);
+            other.GetComponent<CSPlayerController>().JumpOnBed(newJumpHeight);
         }
     }
 }

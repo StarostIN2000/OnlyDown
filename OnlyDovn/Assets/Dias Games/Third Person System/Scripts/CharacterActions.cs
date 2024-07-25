@@ -14,6 +14,10 @@ namespace DiasGames.Abilities
         public bool crawl = false;
         public bool interact = false;
 
+
+        public bool bed = false;
+        public float bedHeight = 0;
+
         // weapon actions
         public bool zoom = false;
         public bool fire = false;

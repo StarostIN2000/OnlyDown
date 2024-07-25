@@ -117,7 +117,7 @@ namespace DiasGames.Components
 			_animIDMotionSpeed = Animator.StringToHash("Motion Speed");
 		}
 
-		private void GroundedCheck()
+		public void GroundedCheck()
 		{
 			// set sphere position, with offset
 			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
@@ -128,7 +128,7 @@ namespace DiasGames.Components
 			Depenetrate();
 		}
 
-		private void Depenetrate()
+		public void Depenetrate()
 		{
 			if (!_controller.enabled) return;
 
@@ -150,8 +150,9 @@ namespace DiasGames.Components
 				if (Vector3.Dot(hit.normal, Vector3.up) < 0.5f)
 				{
 					Grounded = false;
-					Vector3 direction = hit.normal;
-					direction.y = -1;
+					//Vector3 direction = hit.normal;
+					Vector3 direction = Vector3.up;
+                    direction.y = -1;
 					_controller.Move(direction.normalized * _controller.skinWidth * 3);
 				}
 			}

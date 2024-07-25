@@ -6,7 +6,7 @@ using DiasGames.Debugging;
 
 namespace DiasGames.Abilities
 {
-    public class ClimbScript : AbstractAbility
+    public class ClimbScript// : AbstractAbility
     {
         [SerializeField] private LayerMask shortClimbMask;
         [SerializeField] private float overlapRadius = 0.75f;
@@ -24,7 +24,7 @@ namespace DiasGames.Abilities
         private RaycastHit _targetHit;
         private bool _hasMatchTarget;
 
-        private void Awake()
+        /*private void Awake()
         {
             _mover = GetComponent<IMover>();
             _capsule = GetComponent<ICapsule>();
@@ -120,6 +120,6 @@ namespace DiasGames.Abilities
             }
 
             return false;
-        }
+        }*/
     }
 }

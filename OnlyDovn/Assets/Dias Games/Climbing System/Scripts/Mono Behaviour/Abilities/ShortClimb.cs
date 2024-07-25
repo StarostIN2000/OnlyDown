@@ -58,7 +58,7 @@ namespace DiasGames.Abilities
             if (!_animator.isMatchingTarget && !_hasMatchTarget)
             {
                 // calculate target position
-                Vector3 targetPosition = _targetHit.point - _targetHit.normal * _capsule.GetCapsuleRadius() * 0.5f;
+                Vector3 targetPosition = _targetHit.point - _targetHit.normal * _capsule.GetCapsuleRadius() * 0.5f + Vector3.up * 0.1f;
                 _animator.MatchTarget(targetPosition, Quaternion.identity, AvatarTarget.Root,
                     new MatchTargetWeightMask(Vector3.one, 0f), 0.15f, 0.42f);
 

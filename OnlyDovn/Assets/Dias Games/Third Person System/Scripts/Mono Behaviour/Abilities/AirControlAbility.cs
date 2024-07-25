@@ -50,7 +50,7 @@ namespace DiasGames.Abilities
 
         public override bool ReadyToRun()
         {
-            return !_mover.IsGrounded() || _action.jump;
+            return !_mover.IsGrounded() || _action.jump || _action.bed;
         }
 
         public override void OnStartAbility()
@@ -58,8 +58,14 @@ namespace DiasGames.Abilities
             _startInput = _action.move;
             _targetRotation = _camera.eulerAngles.y;
 
-            if (_action.jump && _mover.IsGrounded())
+            if (_action.bed)
+            {
+                PerformJumpBed();
+            }
+            else if (_action.jump && _mover.IsGrounded())
+            {
                 PerformJump();
+            }
             else
             {
                 SetAnimationState(animFallState, 0.25f);
@@ -172,6 +178,23 @@ namespace DiasGames.Abilities
 
             if (_audioPlayer)
                 _audioPlayer.PlayVoice(jumpEffort);
+        }
+        private void PerformJumpBed()
+        {
+            Vector3 velocity = _mover.GetVelocity();
+            velocity.y = Mathf.Sqrt(_action.bedHeight * -2f * _mover.GetGravity());
+
+            _mover.SetVelocity(velocity);
+            _animator.CrossFadeInFixedTime(animJumpState, 0.1f);
+            _startSpeed = speedOnAir;
+
+            if (_startInput.magnitude > 0.1f)
+                _startInput.Normalize();
+
+            if (_audioPlayer)
+                _audioPlayer.PlayVoice(jumpEffort);
+
+            _action.bed = false;
         }
 
 

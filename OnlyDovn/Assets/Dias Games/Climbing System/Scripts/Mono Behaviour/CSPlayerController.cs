@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEditor.ShaderGraph.Internal;
+
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -304,5 +306,11 @@ namespace DiasGames.Controller
 #endif
 
         #endregion
+
+        public void JumpOnBed(float height)
+        {
+            _scheduler.characterActions.bed = true;
+            _scheduler.characterActions.bedHeight = height;
+        }
     }
 }

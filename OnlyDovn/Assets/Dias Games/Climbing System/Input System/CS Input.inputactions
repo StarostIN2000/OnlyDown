@@ -232,7 +232,7 @@
                     "id": "9168b899-c1b1-4ea7-9fb4-f53978eb0b49",
                     "path": "<Mouse>/delta",
                     "interactions": "",
-                    "processors": "ScaleVector2,InvertVector2(invertX=false)",
+                    "processors": "ScaleVector2(x=0.2,y=0.2),InvertVector2(invertX=false,invertY=false)",
                     "groups": "Keyboard Scheme",
                     "action": "Look",
                     "isComposite": false,
