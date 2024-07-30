@@ -22,7 +22,7 @@ public class PlatformMover : MonoBehaviour
             Vector3 target = movingToB ? pointB : pointA;
             while (Vector3.Distance(transform.position, target) > 0.01f)
             {
-                transform.position = Vector3.Lerp(transform.position, target, speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime); //Lerp(transform.position, target, speed * Time.deltaTime);
                 yield return null;
             }
 
