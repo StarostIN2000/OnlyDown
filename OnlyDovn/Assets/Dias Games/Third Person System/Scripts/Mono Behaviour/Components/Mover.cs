@@ -94,6 +94,7 @@ namespace DiasGames.Components
 			_controller.Move(_velocity * Time.deltaTime);
 		}
 
+
 		private void OnAnimatorMove()
 		{
 			if (!_useRootMotion) return;

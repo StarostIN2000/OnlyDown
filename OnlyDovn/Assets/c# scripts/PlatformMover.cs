@@ -30,7 +30,20 @@ public class PlatformMover : MonoBehaviour
             movingToB = !movingToB;
         }
     }
-
+    /*private void Update()
+    {
+        Vector3 target = movingToB ? pointB : pointA;
+        if (Vector3.Distance(transform.position, target) > 0.01f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime); 
+        }
+        else
+        {
+            //yield return new WaitForSeconds(delay);
+            movingToB = !movingToB;
+        }
+    }
+    */
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
