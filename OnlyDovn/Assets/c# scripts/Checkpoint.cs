@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
@@ -7,6 +8,12 @@ public class Checkpoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.GetComponent<PlayerCheckpoint>().SetCheckpoint(transform.position);
+            TurnOfCheckPoint();
         }
+    }
+
+    private void TurnOfCheckPoint()
+    {
+        gameObject.SetActive(false);
     }
 }
