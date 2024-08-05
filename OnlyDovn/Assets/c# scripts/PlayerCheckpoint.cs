@@ -1,4 +1,6 @@
+using DiasGames.Components;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class PlayerCheckpoint : MonoBehaviour
 {
@@ -18,7 +20,9 @@ public class PlayerCheckpoint : MonoBehaviour
 
     public void Respawn()
     {
-        transform.position = currentCheckpoint;
+        //transform.position = currentCheckpoint;
+        var _mover = GetComponent<Mover>();
+        _mover.SetPosition(currentCheckpoint);
         Debug.Log("Персонаж возрожден на чекпоинте: " + currentCheckpoint);
     }
 }
