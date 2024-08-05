@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEditor.ShaderGraph.Internal;
 
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
