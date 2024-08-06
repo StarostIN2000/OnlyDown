@@ -8,5 +8,6 @@ public class FPSlock : MonoBehaviour
     private void Awake()
     {
         Application.targetFrameRate = targetFrameRate;
+        QualitySettings.vSyncCount = 0;
     }
 }
