@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace DiasGames.Components
 {
@@ -40,6 +41,11 @@ namespace DiasGames.Components
         {
             if (pressed)
                 OnPause(!_isPaused);
+        }
+        public void QuitToMenu()
+        {
+            OnPause(!_isPaused);
+            SceneManager.LoadScene(0);
         }
     }
 }
