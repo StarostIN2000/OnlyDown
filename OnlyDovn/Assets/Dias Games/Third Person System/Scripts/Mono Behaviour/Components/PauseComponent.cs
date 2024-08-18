@@ -47,5 +47,9 @@ namespace DiasGames.Components
             OnPause(!_isPaused);
             SceneManager.LoadScene(0);
         }
+        public void QuitToMenuNew()
+        {
+            OnPause(!_isPaused);
+        }
     }
 }

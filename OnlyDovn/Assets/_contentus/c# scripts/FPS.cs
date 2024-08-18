@@ -7,9 +7,6 @@ public class FPS : MonoBehaviour
 {
 
     public float updateInterval = 0.5f; //How often should the number update
-
-    float accum = 0.0f;
-    int frames = 0;
     float timeleft;
     float fps;
 
@@ -26,18 +23,14 @@ public class FPS : MonoBehaviour
     void Update()
     {
         timeleft -= Time.deltaTime;
-        accum += Time.timeScale / Time.deltaTime;
-        ++frames;
 
         // Interval ended - update GUI text and start new interval
         if (timeleft <= 0.0)
         {
             // display two fractional digits (f2 format)
-            fps = (accum / frames);
+            fps = 1f / Time.unscaledDeltaTime;
             timeleft = updateInterval;
-            accum = 0.0f;
-            frames = 0;
-            txt.text = fps.ToString("F2");
+            txt.text = fps.ToString("F0");
         }
     }
 }
