@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerCheckpoint : MonoBehaviour
 {
     private Vector3 currentCheckpoint;
+    
 
     private void Start()
     {
@@ -22,7 +23,9 @@ public class PlayerCheckpoint : MonoBehaviour
             // Устанавливаем начальную позицию как первый чекпоинт
             currentCheckpoint = transform.position;
         }
-    }
+        
+        
+}
 
     public void SetCheckpoint(Vector3 newCheckpoint)
     {
@@ -52,8 +55,9 @@ public class PlayerCheckpoint : MonoBehaviour
     }
     public void TeleportToCheckpoint1()
     {
-        TeleportToCheckpoint(new Vector3((float)-12.01, (float)12.96, (float)-20.22)); // Укажите координаты первого чекпоинта
-    }
+        TeleportToCheckpoint(new Vector3((float)-12.01, (float)12.96, (float)-20.22)); // Укажите координаты первого чекпоинта 
+    }   
+    // Доделать или переделать;)
     public void TeleportToCheckpoint2()
     {
         TeleportToCheckpoint(new Vector3((float)2.512, (float)17.227, (float)0.46)); // Укажите координаты первого чекпоинта
@@ -70,6 +74,7 @@ public class PlayerCheckpoint : MonoBehaviour
         GetComponent<Mover>().SetPosition(startPosition);
         currentCheckpoint = transform.position;
     }
+    
 
 
 }
