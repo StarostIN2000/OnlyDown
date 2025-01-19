@@ -14,9 +14,11 @@ public class QualitySettingsScript : MonoBehaviour
     [SerializeField] Toggle PPToggle;
     [SerializeField] List<UniversalRendererData> URDs;
     [SerializeField] PostProcessData PPD;
+    [SerializeField] MonoBehaviour targetScript; // Скрипт, который нужно включать/выключать
+
     private void Awake()
     {
-        if(PlayerPrefs.HasKey("quality"))
+        if (PlayerPrefs.HasKey("quality"))
         {
             OnQualitySet(PlayerPrefs.GetInt("quality"));
             OnFPSSet(PlayerPrefs.GetInt("fps"));
@@ -31,13 +33,18 @@ public class QualitySettingsScript : MonoBehaviour
             OnPPSet(true);
         }
     }
+
     public void OnQualitySet(int ind)
     {
         QualitySettings.SetQualityLevel(ind);
-        QualityDropdown.value = ind; //sync values by memory to UI
+        QualityDropdown.value = ind; // Синхронизация значений с UI
 
         PlayerPrefs.SetInt("quality", ind);
+
+        // Включение/выключение скрипта в зависимости от уровня качества
+        UpdateTargetScript(ind);
     }
+
     public void OnFPSSet(int ind)
     {
         int fps = 0;
@@ -49,14 +56,14 @@ public class QualitySettingsScript : MonoBehaviour
         }
         Application.targetFrameRate = fps;
         QualitySettings.vSyncCount = 0;
-        FPSDropdown.value = ind; //sync values by memory to UI
+        FPSDropdown.value = ind; // Синхронизация значений с UI
 
         PlayerPrefs.SetInt("fps", ind);
     }
 
     public void OnSSAOSet(bool flag)
     {
-        foreach(var i in URDs)
+        foreach (var i in URDs)
         {
             var ssao = i.rendererFeatures.Where((f) => f.name == "SSAO").FirstOrDefault();
             if (ssao)
@@ -65,10 +72,11 @@ public class QualitySettingsScript : MonoBehaviour
             }
         }
 
-        SSAOToggle.isOn = flag; //sync values by memory to UI
+        SSAOToggle.isOn = flag; // Синхронизация значений с UI
 
         PlayerPrefs.SetInt("SSAO", flag ? 1 : 0);
     }
+
     public void OnPPSet(bool flag)
     {
         foreach (var i in URDs)
@@ -77,9 +85,23 @@ public class QualitySettingsScript : MonoBehaviour
             i.SetDirty();
         }
 
-        PPToggle.isOn = flag; //sync values by memory to UI
+        PPToggle.isOn = flag; // Синхронизация значений с UI
 
         PlayerPrefs.SetInt("PP", flag ? 1 : 0);
     }
 
+    private void UpdateTargetScript(int qualityLevel)
+    {
+        if (targetScript == null) return; // Проверка, если скрипт не задан
+
+        // Логика включения/выключения скрипта
+        if (qualityLevel == 0) // Минимальные настройки
+        {
+            targetScript.enabled = true;
+        }
+        else // Все остальные уровни
+        {
+            targetScript.enabled = false;
+        }
+    }
 }
